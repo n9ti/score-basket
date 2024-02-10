@@ -18,6 +18,10 @@ export const usePlayersStore = defineStore("players", {
     addPlayer(player: Player) {
       this.players.push(player);
     },
+    removePlayer(id: number) {
+      const index = this.players.findIndex((key) => key.id === id);
+      this.players.splice(index, 1);
+    },
   },
   persist: true,
 });
