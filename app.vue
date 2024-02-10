@@ -11,7 +11,5 @@ const { players, addPlayer, removePlayer } = usePlayersStore()
         <button @click="removePlayer(item.id)">[Remove Data]</button>
       </li>
     </ul>
-
-
   </div>
 </template>
