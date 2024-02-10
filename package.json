@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.8",
-    "@nuxtjs/pwa": "^3.3.5",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.0"
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@vite-pwa/nuxt": "^0.4.0"
   }
 }
