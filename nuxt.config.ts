@@ -9,5 +9,8 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ["./stores/**"],
   },
+  piniaPersistedstate: {
+    storage: "localStorage",
+  },
   ssr: false,
 });

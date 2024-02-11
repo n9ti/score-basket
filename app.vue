@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { currentGame, newGame, endGame, resetAllGames, activitys, addActivity, removeActivity, addPlayer, removePlayer, currentTeamA, currentTeamB, addPlayerToTeam, removePlayerFromTeam, getAvailablePlayers } = useGamesStore()
+const { currentGame, gamesStat, playesrStat, endGame, resetAllGames, activitys, addActivity, removeActivity, addPlayer, removePlayer, currentTeamA, currentTeamB, addPlayerToTeam, removePlayerFromTeam, getAvailablePlayers } = useGamesStore()
 const newPlayerName = ''
 
 const currentScore = computed(() => {
@@ -49,7 +49,6 @@ const currentPlayerAsset = (playerId: number) => {
         a.action === 'assit'
     ).length
 }
-
 
 </script>
 
@@ -135,7 +134,6 @@ const currentPlayerAsset = (playerId: number) => {
       </li>
     </ul>
     <!--  -->
-    <button @click="newGame()">[New Game]</button>&nbsp;
     <button @click="endGame()">[End Game]</button>&nbsp;
     <button @click="resetAllGames()">[Reset All Games]</button>
     <hr>
@@ -147,5 +145,30 @@ const currentPlayerAsset = (playerId: number) => {
         <button @click="removeActivity(item.id)">[Remove]</button>
       </li>
     </ul>
+    <!--  -->
+    <hr>
+    <!--  -->
+    <ul>
+      <li v-for="item in gamesStat" :key="item.gameId">
+        <h2>Game {{ item.gameId }}</h2>
+        <h2>TeamA {{ item.score.teamA }} : {{ item.score.teamB }} TeamB</h2>
+        <h3>Team A</h3>
+        <ul>
+          <li v-for="player in item.players.teamA" :key="player.id">
+            {{ player.name }}
+          </li>
+        </ul>
+        <!--  -->
+        <h3>Team B</h3>
+        <ul>
+          <li v-for="player in item.players.teamB" :key="player.id">
+            {{ player.name }}
+          </li>
+        </ul>
+        <hr>
+      </li>
+    </ul>
+    <!--  -->
+    {{ playesrStat }}
   </div>
 </template>

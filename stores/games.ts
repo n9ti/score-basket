@@ -4,6 +4,29 @@ export interface Game {
   gameId: number;
 }
 
+export interface GameStat {
+  gameId: number;
+  score: {
+    teamA: number;
+    teamB: number;
+  };
+  players: {
+    teamA: Player[];
+    teamB: Player[];
+  };
+}
+
+export interface PlayerStat {
+  gameId: number;
+  player: Player;
+  team: string;
+  result: string;
+  score: number;
+  treePoint: number;
+  twoPoint: number;
+  assit: number;
+}
+
 export interface Player {
   id: number;
   name: string;
@@ -20,11 +43,13 @@ export interface Activity {
 
 export const useGamesStore = defineStore("games", {
   state: () => ({
+    currentGame: { gameId: 0 } as Game,
     players: [] as Player[],
     activitys: [] as Activity[],
-    currentGame: { gameId: 0 } as Game,
     currentTeamA: [] as Player[],
     currentTeamB: [] as Player[],
+    gamesStat: [] as GameStat[],
+    playesrStat: [] as PlayerStat[],
   }),
   getters: {
     getAvailablePlayers:
@@ -37,19 +62,90 @@ export const useGamesStore = defineStore("games", {
           );
         });
       },
-    // getPlayerByName: (state: { players: any[] }) => (name: string) => {
-    //   return state.players.find((player) => player.name === name);
-    // },
   },
   actions: {
     //
     // Game //
     //
-    newGame() {
+    endGame() {
+      let teamAScore = this.activitys
+        .filter(
+          (a) =>
+            a.gameId === this.currentGame.gameId &&
+            a.team === "A" &&
+            a.action === "score"
+        )
+        .reduce((accumulator, object) => {
+          return accumulator + object.score;
+        }, 0);
+      let teamBScore = this.activitys
+        .filter(
+          (a) =>
+            a.gameId === this.currentGame.gameId &&
+            a.team === "B" &&
+            a.action === "score"
+        )
+        .reduce((accumulator, object) => {
+          return accumulator + object.score;
+        }, 0);
+      //
+      this.gamesStat.push({
+        gameId: this.currentGame.gameId,
+        score: {
+          teamA: teamAScore,
+          teamB: teamBScore,
+        },
+        players: {
+          teamA: [...this.currentTeamA],
+          teamB: [...this.currentTeamB],
+        },
+      });
+      //
+      this.currentTeamA.forEach((player) => {
+        this.playesrStat.push({
+          gameId: this.currentGame.gameId,
+          player: player,
+          team: "A",
+          result: teamAScore > teamBScore ? "WIN" : "LOSE",
+          score: this.activitys
+            .filter(
+              (a) =>
+                a.gameId === this.currentGame.gameId &&
+                a.player.id === player.id &&
+                a.action === "score"
+            )
+            .reduce((accumulator, object) => {
+              return accumulator + object.score;
+            }, 0),
+          treePoint: this.activitys.filter(
+            (a) =>
+              a.gameId === this.currentGame.gameId &&
+              a.player.id === player.id &&
+              a.action === "score" &&
+              a.score === 3
+          ).length,
+          twoPoint: this.activitys.filter(
+            (a) =>
+              a.gameId === this.currentGame.gameId &&
+              a.player.id === player.id &&
+              a.action === "score" &&
+              a.score === 2
+          ).length,
+          assit: this.activitys.filter(
+            (a) =>
+              a.gameId === this.currentGame.gameId &&
+              a.player.id === player.id &&
+              a.action === "assit"
+          ).length,
+        });
+      });
+      //
       this.currentGame.gameId++;
     },
-    endGame() {},
     resetAllGames() {
+      this.gamesStat.splice(0, this.gamesStat.length);
+      this.playesrStat.splice(0, this.playesrStat.length);
+      this.activitys.splice(0, this.activitys.length);
       this.currentGame.gameId = 0;
     },
     //
