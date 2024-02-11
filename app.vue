@@ -169,6 +169,10 @@ const currentPlayerAsset = (playerId: number) => {
       </li>
     </ul>
     <!--  -->
-    {{ playesrStat }}
+    <ul>
+      <li v-for="item in playesrStat" :key="item.gameId + ':' + item.player.id">
+        {{ item }}
+      </li>
+    </ul>
   </div>
 </template>

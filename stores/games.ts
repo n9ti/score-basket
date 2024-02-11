@@ -140,6 +140,45 @@ export const useGamesStore = defineStore("games", {
         });
       });
       //
+      this.currentTeamB.forEach((player) => {
+        this.playesrStat.push({
+          gameId: this.currentGame.gameId,
+          player: player,
+          team: "B",
+          result: teamAScore < teamBScore ? "WIN" : "LOSE",
+          score: this.activitys
+            .filter(
+              (a) =>
+                a.gameId === this.currentGame.gameId &&
+                a.player.id === player.id &&
+                a.action === "score"
+            )
+            .reduce((accumulator, object) => {
+              return accumulator + object.score;
+            }, 0),
+          treePoint: this.activitys.filter(
+            (a) =>
+              a.gameId === this.currentGame.gameId &&
+              a.player.id === player.id &&
+              a.action === "score" &&
+              a.score === 3
+          ).length,
+          twoPoint: this.activitys.filter(
+            (a) =>
+              a.gameId === this.currentGame.gameId &&
+              a.player.id === player.id &&
+              a.action === "score" &&
+              a.score === 2
+          ).length,
+          assit: this.activitys.filter(
+            (a) =>
+              a.gameId === this.currentGame.gameId &&
+              a.player.id === player.id &&
+              a.action === "assit"
+          ).length,
+        });
+      });
+      //
       this.currentGame.gameId++;
     },
     resetAllGames() {
