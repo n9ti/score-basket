@@ -47,10 +47,10 @@ const currentGameActivitys = () => {
       <li v-for="item in currentGameActivitys()" :key="item.id">
         <template v-if="item.team === 'A'">
           <hr />
-          <div class="timeline-start timeline-box"><span class="font-bold">{{ item.player.name }}</span>
-            <span v-if="item.action === 'score'">&nbsp;{{ item.score
+          <div class="timeline-start timeline-box text-xl"><span class="font-bold">{{ item.player.name }}</span>
+            <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
             }}Pt</span>
-            <span v-else> Assit</span>
+            <span v-else>&nbsp;ִ🎯&nbsp;Assist</span>
             <br>
             <button class="btn btn-xs btn-accent" @click="removeActivity(item.id)">Remove</button>
           </div>
@@ -72,10 +72,10 @@ const currentGameActivitys = () => {
                 clip-rule="evenodd" />
             </svg>
           </div>
-          <div class="timeline-end timeline-box"><span class="font-bold">{{ item.player.name }}</span>
-            <span v-if="item.action === 'score'">&nbsp;{{ item.score
+          <div class="timeline-end timeline-box text-xl"><span class="font-bold">{{ item.player.name }}</span>
+            <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
             }}Pt</span>
-            <span v-else> Assit</span>
+            <span v-else>&nbsp;ִ🎯&nbsp;Assist</span>
             <br>
             <button class="btn btn-xs btn-accent" @click="removeActivity(item.id)">Remove</button>
           </div>
