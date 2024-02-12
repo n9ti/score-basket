@@ -56,6 +56,10 @@ const currentPlayerAsset = (playerId: number) => {
     ).length
 }
 
+const substitute = (team: string, playerId: number) => {
+  removePlayerFromTeam(team, playerId)
+  navigateTo(`/players/add-to-team-${team}`)
+}
 </script>
 
 <template>
@@ -67,42 +71,64 @@ const currentPlayerAsset = (playerId: number) => {
 
     <div class="mt-4 flex w-full">
       <div class="grid flex-grow content-start w-1/2">
-        <h1 class="text-right">Team A</h1>
-        <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl">{{ currentScore.teamA }}</div>
+        <h1 class="font-bold text-right">Team A</h1>
+        <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{ currentScore.teamA
+        }}</div>
         <ul>
-          <li class="mt-4" v-for="item in currentTeamA" :key="item.id">
-            <div>{{ item.name }} S({{ currentPlayerScore(item.id) }}) A({{ currentPlayerAsset(item.id) }})</div>
-            <!-- <button @click="removePlayerFromTeam('A', item.id)">-</button>&nbsp; -->
+          <li class="mt-8" v-for="item in currentTeamA" :key="item.id">
             <!--  -->
-            <button class="btn btn-xs btn-secondary" @click="addActivity({
-              id: Date.now(),
-              gameId: currentGame.gameId,
-              team: 'A',
-              player: item,
-              action: 'score',
-              score: 2
-            })">2Pt</button>&nbsp;
+            <div class="flex">
+              <div class="avatar">
+                <div class="w-12 h-12 rounded-full">
+                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+              </div>
+              <div class="ml-2 grow">
+                <div class="font-bold">{{ item.name }}</div>
+                <div>S({{ currentPlayerScore(item.id) }}) A({{ currentPlayerAsset(item.id) }})</div>
+              </div>
+
+              <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li><a @click="substitute('A', item.id)">Substitute</a></li>
+                  <li><a @click="removePlayerFromTeam('A', item.id)">Remove</a></li>
+                </ul>
+              </div>
+            </div>
             <!--  -->
-            <button class="btn btn-xs btn-secondary" @click="addActivity({
-              id: Date.now(),
-              gameId: currentGame.gameId,
-              team: 'A',
-              player: item,
-              action: 'score',
-              score: 3
-            })">3Pt</button>&nbsp;
-            <!--  -->
-            <button class="btn btn-xs btn-secondary" @click="addActivity({
-              id: Date.now(),
-              gameId: currentGame.gameId,
-              team: 'A',
-              player: item,
-              action: 'assit',
-              score: 0
-            })">Assit</button>
+            <div class="mt-2 flex justify-between">
+              <button class="btn btn-xs btn-secondary" @click="addActivity({
+                id: Date.now(),
+                gameId: currentGame.gameId,
+                team: 'A',
+                player: item,
+                action: 'score',
+                score: 2
+              })">2Pt</button>&nbsp;
+              <!--  -->
+              <button class="btn btn-xs btn-secondary" @click="addActivity({
+                id: Date.now(),
+                gameId: currentGame.gameId,
+                team: 'A',
+                player: item,
+                action: 'score',
+                score: 3
+              })">3Pt</button>&nbsp;
+              <!--  -->
+              <button class="btn btn-xs btn-secondary" @click="addActivity({
+                id: Date.now(),
+                gameId: currentGame.gameId,
+                team: 'A',
+                player: item,
+                action: 'assit',
+                score: 0
+              })">Assit</button>
+            </div>
+
           </li>
         </ul>
-        <div class="mt-8">
+        <div class="mt-12">
           <NuxtLink class="w-full btn rounded-full btn-sm" to="/players/add-to-team-A">+ Player</NuxtLink>
           <button v-if="currentTeamA.length > 0" class="mt-2 w-full btn btn-ghost"
             @click="removeAllPlayerFromTeam('A')">Clear</button>
@@ -110,42 +136,62 @@ const currentPlayerAsset = (playerId: number) => {
       </div>
       <div class="divider divider-horizontal"></div>
       <div class="grid flex-grow content-start w-1/2">
-        <h1>Team B</h1>
-        <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl">{{ currentScore.teamB }}</div>
+        <h1 class="font-bold">Team B</h1>
+        <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{ currentScore.teamB
+        }}</div>
         <ul>
-          <li class="mt-4" v-for="item in currentTeamB" :key="item.id">
-            <div>{{ item.name }} S({{ currentPlayerScore(item.id) }}) A({{ currentPlayerAsset(item.id) }})</div>
-            <!-- <button @click="removePlayerFromTeam('B', item.id)">[Remove]</button>&nbsp; -->
+          <li class="mt-8" v-for="item in currentTeamB" :key="item.id">
             <!--  -->
-            <button class="btn btn-xs btn-secondary" @click="addActivity({
-              id: Date.now(),
-              gameId: currentGame.gameId,
-              team: 'B',
-              player: item,
-              action: 'score',
-              score: 2
-            })">2Pt</button>&nbsp;
+            <div class="flex">
+              <div class="avatar">
+                <div class="w-12 h-12 rounded-full">
+                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                </div>
+              </div>
+              <div class="ml-2 grow">
+                <div class="font-bold">{{ item.name }}</div>
+                <div>S({{ currentPlayerScore(item.id) }}) A({{ currentPlayerAsset(item.id) }})</div>
+              </div>
+              <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                  <li><a @click="substitute('B', item.id)">Substitute</a></li>
+                  <li><a @click="removePlayerFromTeam('B', item.id)">Remove</a></li>
+                </ul>
+              </div>
+            </div>
             <!--  -->
-            <button class="btn btn-xs btn-secondary" @click="addActivity({
-              id: Date.now(),
-              gameId: currentGame.gameId,
-              team: 'B',
-              player: item,
-              action: 'score',
-              score: 3
-            })">3Pt</button>&nbsp;
-            <!--  -->
-            <button class="btn btn-xs btn-secondary" @click="addActivity({
-              id: Date.now(),
-              gameId: currentGame.gameId,
-              team: 'B',
-              player: item,
-              action: 'assit',
-              score: 0
-            })">Assit</button>
+            <div class="mt-2 flex justify-between">
+              <button class="btn btn-xs btn-secondary" @click="addActivity({
+                id: Date.now(),
+                gameId: currentGame.gameId,
+                team: 'B',
+                player: item,
+                action: 'score',
+                score: 2
+              })">2Pt</button>&nbsp;
+              <!--  -->
+              <button class="btn btn-xs btn-secondary" @click="addActivity({
+                id: Date.now(),
+                gameId: currentGame.gameId,
+                team: 'B',
+                player: item,
+                action: 'score',
+                score: 3
+              })">3Pt</button>&nbsp;
+              <!--  -->
+              <button class="btn btn-xs btn-secondary" @click="addActivity({
+                id: Date.now(),
+                gameId: currentGame.gameId,
+                team: 'B',
+                player: item,
+                action: 'assit',
+                score: 0
+              })">Assit</button>
+            </div>
           </li>
         </ul>
-        <div class="mt-8">
+        <div class="mt-12">
           <NuxtLink class="w-full btn rounded-full btn-sm" to="/players/add-to-team-B">+ Player</NuxtLink>
           <button v-if="currentTeamB.length > 0" class="mt-2 w-full btn btn-ghost"
             @click="removeAllPlayerFromTeam('B')">Clear</button>
@@ -153,7 +199,6 @@ const currentPlayerAsset = (playerId: number) => {
       </div>
     </div>
     <!--  -->
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <button v-if="currentActivitys.length > 0" class="btn w-full btn-accent" @click="endGame()">End Game</button>
+    <button v-if="currentActivitys.length > 0" class="mt-64 btn w-full btn-accent" @click="endGame()">End Game</button>
   </div>
 </template>
