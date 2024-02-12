@@ -79,8 +79,8 @@ const substitute = (team: string, playerId: number) => {
             <!--  -->
             <div class="flex">
               <div class="avatar">
-                <div class="w-10 h-10 mask mask-hexagon">
-                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div class="w-10 h-10 mask mask-hexagon  bg-neutral">
+                  <img v-if="item.img" :src="item.img" />
                 </div>
               </div>
               <div class="ml-1 grow">
@@ -147,8 +147,8 @@ const substitute = (team: string, playerId: number) => {
             <!--  -->
             <div class="flex">
               <div class="avatar">
-                <div class="w-10 h-10 mask mask-hexagon">
-                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div class="w-10 h-10 mask mask-hexagon  bg-neutral">
+                  <img v-if="item.img" :src="item.img" />
                 </div>
               </div>
               <div class="ml-1 grow">

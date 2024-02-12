@@ -30,6 +30,7 @@ export interface PlayerStat {
 export interface Player {
   id: number;
   name: string;
+  img: string;
 }
 
 export interface Activity {

@@ -9,8 +9,8 @@ const { removePlayer, addPlayerToTeam, players } = useGamesStore()
     <ul>
       <li class="mt-4 flex content-center" v-for="item in players" :key="item.id">
         <div class="avatar">
-          <div class="w-12 mask mask-hexagon">
-            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <div class="w-12 mask mask-hexagon bg-neutral">
+            <img v-if="item.img" :src="item.img" />
           </div>
         </div>
 

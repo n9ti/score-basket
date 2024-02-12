@@ -42,17 +42,24 @@ const currentGameActivitys = () => {
       <NuxtLink class="btn rounded-full btn-xs" to="/">Back</NuxtLink>
     </div>
     <!--  -->
-
     <ul class="mt-4 mb-8 timeline timeline-vertical">
       <li v-for="item in currentGameActivitys()" :key="item.id">
         <template v-if="item.team === 'A'">
           <hr />
-          <div class="timeline-start timeline-box"><span class="font-bold">{{ item.player.name }}</span>
-            <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
-            }}Pt</span>
-            <span v-else>&nbsp;ִ➡️&nbsp;Assist</span>
-            <br>
-            <button class="btn btn-xs btn-accent" @click="removeActivity(item.id)">Remove</button>
+          <div class="timeline-start timeline-box flex px-2">
+            <div class="avatar">
+              <div class="w-8 h-8 mask mask-hexagon bg-neutral">
+                <img v-if="item.player.img" :src="item.player.img" />
+              </div>
+            </div>
+            <div class="ml-2">
+              <span class="font-bold">{{ item.player.name }}</span>
+              <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
+              }}Pt</span>
+              <span v-else>&nbsp;ִ➡️&nbsp;Assist</span>
+              <br>
+              <button class="btn btn-xs btn-accent float-right" @click="removeActivity(item.id)">Remove</button>
+            </div>
           </div>
           <div class="timeline-middle">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
@@ -72,26 +79,24 @@ const currentGameActivitys = () => {
                 clip-rule="evenodd" />
             </svg>
           </div>
-          <div class="timeline-end timeline-box"><span class="font-bold">{{ item.player.name }}</span>
-            <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
-            }}Pt</span>
-            <span v-else>&nbsp;ִ➡️&nbsp;Assist</span>
-            <br>
-            <button class="btn btn-xs btn-accent" @click="removeActivity(item.id)">Remove</button>
+          <div class="timeline-end timeline-box flex px-2">
+            <div class="">
+              <span class="font-bold">{{ item.player.name }}</span>
+              <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
+              }}Pt</span>
+              <span v-else>&nbsp;ִ➡️&nbsp;Assist</span>
+              <br>
+              <button class="btn btn-xs btn-accent" @click="removeActivity(item.id)">Remove</button>
+            </div>
+            <div class="avatar ml-2">
+              <div class="w-8 h-8 mask mask-hexagon bg-neutral">
+                <img v-if="item.player.img" :src="item.player.img" />
+              </div>
+            </div>
           </div>
           <hr />
         </template>
       </li>
     </ul>
-
-
-    <!--  -->
-    <!-- <ul>
-      <li v-for="item in currentGameActivitys()" :key="item.id">
-        {{ item.id }} - {{ item.gameId }} - {{ item.team }} - {{ item.player }} - {{ item.action }} - {{ item.score
-        }}
-        <button @click="removeActivity(item.id)">[Remove]</button>
-      </li>
-    </ul> -->
   </div>
 </template>

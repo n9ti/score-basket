@@ -22,8 +22,8 @@ const { gamesStat } = useGamesStore()
             <div class="mt-2 w-full grid justify-items-end">
               <div class="avatar-group -space-x-1 rtl:space-x-reverse">
                 <div v-for="player in item.players.teamA" :key="player.id" class="avatar">
-                  <div class="w-6 mask mask-hexagon">
-                    <img :alt="player.name" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <div class="w-6 mask mask-hexagon bg-neutral">
+                    <img v-if="player.img" :src="player.img" />
                   </div>
                 </div>
               </div>
@@ -42,8 +42,8 @@ const { gamesStat } = useGamesStore()
             <div class="mt-2 w-full grid justify-items-start">
               <div class="avatar-group -space-x-1 rtl:space-x-reverse">
                 <div v-for="player in item.players.teamB" :key="player.id" class="avatar mask mask-hexagon">
-                  <div class="w-6 mask mask-hexagon">
-                    <img :alt="player.name" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <div class="w-6 mask mask-hexagon bg-neutral">
+                    <img v-if="player.img" :src="player.img" />
                   </div>
                 </div>
               </div>
