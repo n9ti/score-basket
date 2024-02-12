@@ -9,10 +9,11 @@ const { removePlayer, addPlayerToTeam, players } = useGamesStore()
     <ul>
       <li class="mt-4 flex content-center" v-for="item in players" :key="item.id">
         <div class="avatar">
-          <div class="w-12 rounded-full">
+          <div class="w-12 mask mask-hexagon">
             <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
           </div>
         </div>
+
         <span class="ml-2 grow text-2xl">{{ item.name }}</span>
         <button class="btn btn-sm btn-circle btn-outline" @click="removePlayer(item.id)"><svg
             xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
