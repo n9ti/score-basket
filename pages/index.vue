@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { currentGame, endGame, resetAllGames, activitys, addActivity, currentTeamA, currentTeamB, removePlayerFromTeam } = useGamesStore()
+const { currentGame, endGame, resetAllGames, activitys, addActivity, currentTeamA, currentTeamB, removePlayerFromTeam, removeAllPlayerFromTeam } = useGamesStore()
 
 const currentScore = computed(() => {
   return {
@@ -93,6 +93,7 @@ const currentPlayerAsset = (playerId: number) => {
         })">[Assit]</button>
       </li>
     </ul>
+    <button @click="removeAllPlayerFromTeam('A')">[Clear]</button> &nbsp;
     <NuxtLink to="/players/add-to-team-A">Add Player</NuxtLink>
     <!--  -->
     <hr>
@@ -131,6 +132,7 @@ const currentPlayerAsset = (playerId: number) => {
         })">[Assit]</button>
       </li>
     </ul>
+    <button @click="removeAllPlayerFromTeam('B')">[Clear]</button> &nbsp;
     <NuxtLink to="/players/add-to-team-B">Add Player</NuxtLink>
 
     <hr>

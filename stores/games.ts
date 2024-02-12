@@ -213,6 +213,11 @@ export const useGamesStore = defineStore("games", {
         this.currentTeamB.splice(index, 1);
       }
     },
+    removeAllPlayerFromTeam(team: string) {
+      if (team === "A") this.currentTeamA.splice(0, this.currentTeamA.length);
+      else if (team === "B")
+        this.currentTeamB.splice(0, this.currentTeamB.length);
+    },
     //
     // Activity //
     //
