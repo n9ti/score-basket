@@ -18,9 +18,10 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.8",
+    "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/tailwindcss": "^6",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@vite-pwa/nuxt": "^0.4.0",
-    "@nuxtjs/tailwindcss": "^6",
     "daisyui": "^4"
   }
 }

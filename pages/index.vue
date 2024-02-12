@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const colorMode = useColorMode()
 const { currentGame, endGame, activitys, addActivity, currentTeamA, currentTeamB, removePlayerFromTeam, removeAllPlayerFromTeam } = useGamesStore()
 
 const currentActivitys = computed(() => {
@@ -64,6 +65,7 @@ const substitute = (team: string, playerId: number) => {
 
 <template>
   <div>
+    {{ colorMode.preference }}
     <h1 class="w-full text-center text-3xl font-semibold">Game {{ currentGame.gameId + 1 }}</h1>
     <div class="mt-2 w-full flex justify-center">
       <NuxtLink class="btn rounded-full btn-xs" to="/game-history">Game History</NuxtLink>
