@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vite-pwa/nuxt",
+    "@nuxtjs/tailwindcss",
   ],
   pinia: {
     storesDirs: ["./stores/**"],
