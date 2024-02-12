@@ -53,19 +53,20 @@ const resizeAndCrop = () => {
         const newHeight = size;
         const newWidth = newHeight * aspectRatio;
 
-        ctx.drawImage(image, 0, 0, newWidth, newHeight);
+        ctx?.drawImage(image, 0, 0, newWidth, newHeight);
       } else {
         // รูปภาพแนวตั้ง
         const newWidth = size;
         const newHeight = newWidth / aspectRatio;
-        ctx.drawImage(image, 0, 0, newWidth, newHeight);
+        ctx?.drawImage(image, 0, 0, newWidth, newHeight);
       }
 
       const resizedImage = canvas.toDataURL('image/png');
 
       fileUrl.value = resizedImage
     };
-    image.src = event.target.result;
+    const result = event?.target?.result as string;
+    image.src = result;
   };
   reader.readAsDataURL(file);
 }
