@@ -79,13 +79,16 @@ const substitute = (team: string, playerId: number) => {
             <!--  -->
             <div class="flex">
               <div class="avatar">
-                <div class="w-12 h-12 mask mask-hexagon">
+                <div class="w-10 h-10 mask mask-hexagon">
                   <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                 </div>
               </div>
-              <div class="ml-2 grow">
+              <div class="ml-1 grow">
                 <div class="font-bold">{{ item.name }}</div>
-                <div>S({{ currentPlayerScore(item.id) }}) A({{ currentPlayerAsset(item.id) }})</div>
+                <div>🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
+                    class="font-mono">:{{
+                      currentPlayerAsset(item.id)
+                    }}</span></div>
               </div>
 
               <div class="dropdown">
@@ -144,13 +147,16 @@ const substitute = (team: string, playerId: number) => {
             <!--  -->
             <div class="flex">
               <div class="avatar">
-                <div class="w-12 h-12 mask mask-hexagon">
+                <div class="w-10 h-10 mask mask-hexagon">
                   <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                 </div>
               </div>
-              <div class="ml-2 grow">
+              <div class="ml-1 grow">
                 <div class="font-bold">{{ item.name }}</div>
-                <div>S({{ currentPlayerScore(item.id) }}) A({{ currentPlayerAsset(item.id) }})</div>
+                <div>🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
+                    class="font-mono">:{{
+                      currentPlayerAsset(item.id)
+                    }}</span></div>
               </div>
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
