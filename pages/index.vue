@@ -60,6 +60,16 @@ const substitute = (team: string, playerId: number) => {
   removePlayerFromTeam(team, playerId)
   navigateTo(`/players/add-to-team-${team}`)
 }
+
+// 
+
+import { useSound } from '@vueuse/sound'
+import scoreSfx from '../assets/score.wav'
+import assistSfx from '../assets/assist.wav'
+
+const score = useSound(scoreSfx)
+const assist = useSound(assistSfx)
+
 </script>
 
 <template>
@@ -101,7 +111,7 @@ const substitute = (team: string, playerId: number) => {
             </div>
             <!--  -->
             <div class="mt-2 flex justify-between">
-              <button class="btn btn-xs btn-secondary" @click="addActivity({
+              <button class="btn btn-xs btn-secondary" @click="score.play(); addActivity({
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'A',
@@ -110,7 +120,7 @@ const substitute = (team: string, playerId: number) => {
                 score: 2
               })">2Pt</button>&nbsp;
               <!--  -->
-              <button class="btn btn-xs btn-secondary" @click="addActivity({
+              <button class="btn btn-xs btn-secondary" @click="score.play(); addActivity({
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'A',
@@ -119,7 +129,7 @@ const substitute = (team: string, playerId: number) => {
                 score: 3
               })">3Pt</button>&nbsp;
               <!--  -->
-              <button class="btn btn-xs btn-secondary" @click="addActivity({
+              <button class="btn btn-xs btn-secondary" @click="assist.play(); addActivity({
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'A',
@@ -168,7 +178,7 @@ const substitute = (team: string, playerId: number) => {
             </div>
             <!--  -->
             <div class="mt-2 flex justify-between">
-              <button class="btn btn-xs btn-secondary" @click="addActivity({
+              <button class="btn btn-xs btn-secondary" @click="score.play(); addActivity({
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'B',
@@ -177,7 +187,7 @@ const substitute = (team: string, playerId: number) => {
                 score: 2
               })">2Pt</button>&nbsp;
               <!--  -->
-              <button class="btn btn-xs btn-secondary" @click="addActivity({
+              <button class="btn btn-xs btn-secondary" @click="score.play(); addActivity({
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'B',
@@ -186,7 +196,7 @@ const substitute = (team: string, playerId: number) => {
                 score: 3
               })">3Pt</button>&nbsp;
               <!--  -->
-              <button class="btn btn-xs btn-secondary" @click="addActivity({
+              <button class="btn btn-xs btn-secondary" @click="assist.play(); addActivity({
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'B',
