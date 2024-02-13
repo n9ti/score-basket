@@ -95,10 +95,10 @@ const assist = useSound(assistSfx)
               </div>
               <div class="ml-1 grow">
                 <div class="font-bold">{{ item.name }}</div>
-                <div class="text-xs">🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
-                    class="font-mono">:{{
-                      currentPlayerAsset(item.id)
-                    }}</span></div>
+                <div class="text-xs">🏀<span class="font-mono font-bold">:{{ currentPlayerScore(item.id)
+                }}&nbsp;</span>➡️<span class="font-mono font-bold">:{{
+  currentPlayerAsset(item.id)
+}}</span></div>
               </div>
 
               <div class="dropdown relative top-0 right-0 ">
@@ -165,10 +165,10 @@ const assist = useSound(assistSfx)
               </div>
               <div class="ml-1 grow">
                 <div class="font-bold">{{ item.name }}</div>
-                <div class="text-xs">🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
-                    class="font-mono">:{{
-                      currentPlayerAsset(item.id)
-                    }}</span></div>
+                <div class="text-xs">🏀<span class="font-mono font-bold">:{{ currentPlayerScore(item.id)
+                }}&nbsp;</span>➡️<span class="font-mono font-bold">:{{
+  currentPlayerAsset(item.id)
+}}</span></div>
               </div>
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
