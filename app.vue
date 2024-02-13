@@ -25,3 +25,9 @@ document.addEventListener('gestureend', function (e) {
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<style>
+* {
+  touch-action: manipulation;
+}
+</style>
