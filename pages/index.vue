@@ -95,13 +95,13 @@ const assist = useSound(assistSfx)
               </div>
               <div class="ml-1 grow">
                 <div class="font-bold">{{ item.name }}</div>
-                <div>🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
+                <div class="text-xs">🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
                     class="font-mono">:{{
                       currentPlayerAsset(item.id)
                     }}</span></div>
               </div>
 
-              <div class="dropdown">
+              <div class="dropdown relative top-0 right-0 ">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                   <li><a @click="substitute('A', item.id)">Substitute</a></li>
@@ -165,7 +165,7 @@ const assist = useSound(assistSfx)
               </div>
               <div class="ml-1 grow">
                 <div class="font-bold">{{ item.name }}</div>
-                <div>🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
+                <div class="text-xs">🏀<span class="font-mono">:{{ currentPlayerScore(item.id) }}&nbsp;</span>➡️<span
                     class="font-mono">:{{
                       currentPlayerAsset(item.id)
                     }}</span></div>
