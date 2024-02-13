@@ -80,7 +80,7 @@ const assist = useSound(assistSfx)
     </div>
 
     <div class="mt-4 flex w-full">
-      <div class="grid flex-grow content-start w-1/2">
+      <div class="grid flex-grow content-start">
         <h1 class="font-bold text-right">Team A</h1>
         <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{ currentScore.teamA
         }}</div>
@@ -148,7 +148,7 @@ const assist = useSound(assistSfx)
         </div>
       </div>
       <div class="divider divider-horizontal"></div>
-      <div class="grid flex-grow content-start w-1/2">
+      <div class="grid flex-grow content-start">
         <h1 class="font-bold">Team B</h1>
         <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{ currentScore.teamB
         }}</div>
