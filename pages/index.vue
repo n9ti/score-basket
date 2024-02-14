@@ -104,9 +104,9 @@ const assist = useSound(assistSfx)
 
               <div class="dropdown relative top-0 right-0 ">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                  <li><a @click="substitute('A', item.id)">Substitute</a></li>
-                  <li><a @click="removePlayerFromTeam('A', item.id)">Remove</a></li>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
+                  <li><a @click="substitute('A', item.id)">🙅🏻&nbsp;&nbsp;Substitute</a></li>
+                  <li><a @click="removePlayerFromTeam('A', item.id)">❌&nbsp;&nbsp;Remove</a></li>
                 </ul>
               </div>
             </div>
@@ -174,9 +174,9 @@ const assist = useSound(assistSfx)
               </div>
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                  <li><a @click="substitute('B', item.id)">Substitute</a></li>
-                  <li><a @click="removePlayerFromTeam('B', item.id)">Remove</a></li>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
+                  <li><a @click="substitute('B', item.id)">🙅🏻&nbsp;&nbsp;Substitute</a></li>
+                  <li><a @click="removePlayerFromTeam('B', item.id)">❌&nbsp;&nbsp;Remove</a></li>
                 </ul>
               </div>
             </div>
