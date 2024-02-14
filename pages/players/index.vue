@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { removePlayer, addPlayerToTeam, players } = useGamesStore()
+const { players } = useGamesStore()
+
 
 </script>
 
@@ -7,29 +8,10 @@ const { removePlayer, addPlayerToTeam, players } = useGamesStore()
   <div>
     <h1 class="text-3xl">All Players</h1>
     <ul>
-      <li class="mt-4 flex content-center" v-for="item in players" :key="item.id">
-        <div class="avatar">
-          <div class="w-12 mask mask-hexagon bg-neutral">
-            <img v-if="item.img" :src="item.img" />
-          </div>
-        </div>
-
-        <span class="ml-2 grow text-2xl">{{ item.name }}</span>
-
-        <div class="dropdown dropdown-left">
-          <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
-          <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
-            <li><a @click="removePlayer(item.id)">❌&nbsp;&nbsp;Remove</a></li>
-          </ul>
-        </div>
-
-        <!-- <button class="btn btn-sm btn-circle btn-outline" @click="removePlayer(item.id)"><svg
-            xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg></button> -->
-      </li>
+      <template v-for="item in players" :key="item.id">
+        <PlayerStat :player="item"></PlayerStat>
+      </template>
     </ul>
-
     <NuxtLink class="mt-8 w-full btn btn-secondary mt-4" to="/players/create">+ New Player</NuxtLink>
   </div>
 </template>

@@ -67,8 +67,8 @@ import { useSound } from '@vueuse/sound'
 import scoreSfx from '../assets/score.wav'
 import assistSfx from '../assets/assist.wav'
 
-const score = useSound(scoreSfx)
-const assist = useSound(assistSfx)
+const score = useSound(scoreSfx, { volume: 0.2 })
+const assist = useSound(assistSfx, { volume: 0.2 })
 
 </script>
 
