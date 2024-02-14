@@ -82,7 +82,8 @@ const assist = useSound(assistSfx)
     <div class="mt-4 flex w-full">
       <div class="grid content-start w-1/2 pr-4 border-r-2 border-base-content/10">
         <h1 class="font-bold text-right">Team A</h1>
-        <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{ currentScore.teamA
+        <div class="mt-2 p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{
+          currentScore.teamA
         }}</div>
         <ul>
           <li class="mt-8" v-for="item in currentTeamA" :key="item.id">
@@ -152,7 +153,8 @@ const assist = useSound(assistSfx)
       <!--  -->
       <div class="grid content-start w-1/2 pl-4">
         <h1 class="font-bold">Team B</h1>
-        <div class="p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{ currentScore.teamB
+        <div class="mt-2 p-6 w-full bg-base-300 rounded-box align-middle text-center text-6xl font-mono">{{
+          currentScore.teamB
         }}</div>
         <ul>
           <li class="mt-8" v-for="item in currentTeamB" :key="item.id">
