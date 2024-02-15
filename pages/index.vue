@@ -144,7 +144,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
         </ul>
         <div class="mt-12">
           <NuxtLink class="w-full btn rounded-full btn-sm" to="/players/add-to-team-A">+ Player</NuxtLink>
-          <button v-if="currentTeamA.length > 0" class="mt-2 w-full btn btn-ghost"
+          <button v-if="currentTeamA.length > 0 && currentActivitys.length === 0" class="mt-2 w-full btn btn-ghost"
             @click="removeAllPlayerFromTeam('A')">Clear</button>
         </div>
       </div>
@@ -213,7 +213,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
         </ul>
         <div class="mt-12">
           <NuxtLink class="w-full btn rounded-full btn-sm" to="/players/add-to-team-B">+ Player</NuxtLink>
-          <button v-if="currentTeamB.length > 0" class="mt-2 w-full btn btn-ghost"
+          <button v-if="currentTeamB.length > 0 && currentActivitys.length === 0" class="mt-2 w-full btn btn-ghost"
             @click="removeAllPlayerFromTeam('B')">Clear</button>
         </div>
       </div>

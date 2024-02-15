@@ -18,7 +18,13 @@ const cancel = () => {
     <h1 class="text-3xl">Add Player to team-{{ $route.params.team }}</h1>
 
     <ul>
-      <li class="mt-4 flex content-center" v-for="item in getAvailablePlayers()" :key="item.id">
+      <li class="mt-4 flex content-center" v-for="item in getAvailablePlayers().sort(function (a, b) {
+          let x = a.name.toLowerCase();
+          let y = b.name.toLowerCase();
+          if (x < y) { return -1; }
+          if (x > y) { return 1; }
+          return 0;
+        })" :key="item.id">
         <div class="avatar">
           <div class="w-12 mask mask-hexagon bg-neutral">
             <img v-if="item.img" :src="item.img" />
