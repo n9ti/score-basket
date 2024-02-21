@@ -332,6 +332,11 @@ export const useGamesStore = defineStore("games", {
           name: "will",
           img: "/players/will.png",
         },
+        {
+          id: 900017,
+          name: "it",
+          img: "/players/it.png",
+        },
       ];
       this.players.push(...saturdayHooper);
     },
