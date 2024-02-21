@@ -55,7 +55,7 @@ const getGamePlayerAssistStat = (gameId: number, playerId: number) => {
             </div>
             <div class="mt-1 w-full grid justify-items-end">
               <div v-for="playerId in item.players.teamA" :key="playerId"
-                class="mt-1 w-10/12 flex justify-between items-center">
+                class="mt-1 w-full flex justify-between items-center">
                 <div class="font-medium">🏀 : {{ getGamePlayerScoreStat(item.gameId, playerId) }}</div>
                 <div class="font-medium">③ : {{ getGamePlayer3PtStat(item.gameId, playerId) }}</div>
                 <div class="font-medium">➡️ : {{ getGamePlayerAssistStat(item.gameId, playerId) }}</div>
@@ -80,7 +80,7 @@ const getGamePlayerAssistStat = (gameId: number, playerId: number) => {
             </div>
             <div class="mt-1 w-full grid justify-items-start">
               <div v-for="playerId in item.players.teamB" :key="playerId"
-                class="mt-1 w-10/12 flex justify-between items-center">
+                class="mt-1 w-full flex justify-between items-center">
                 <div class="avatar">
                   <div class="w-8 mask mask-hexagon bg-neutral">
                     <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
