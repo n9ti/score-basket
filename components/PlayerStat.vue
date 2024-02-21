@@ -8,7 +8,7 @@ defineProps<{
 const getPlayerWinStat = (playerId: number) => {
   return playesrStat.filter(
     (a) =>
-      a.player.id === playerId && a.result === "WIN"
+      a.playerId === playerId && a.result === "WIN"
   )
     .reduce((accumulator, object) => {
       return accumulator + 1;
@@ -18,7 +18,7 @@ const getPlayerWinStat = (playerId: number) => {
 const getPlayerLoseStat = (playerId: number) => {
   return playesrStat.filter(
     (a) =>
-      a.player.id === playerId && a.result === "LOSE"
+      a.playerId === playerId && a.result === "LOSE"
   )
     .reduce((accumulator, object) => {
       return accumulator + 1;
@@ -28,7 +28,7 @@ const getPlayerLoseStat = (playerId: number) => {
 const getPlayerScoreStat = (playerId: number) => {
   return playesrStat.filter(
     (a) =>
-      a.player.id === playerId
+      a.playerId === playerId
   )
     .reduce((accumulator, object) => {
       return accumulator + object.score;
@@ -38,7 +38,7 @@ const getPlayerScoreStat = (playerId: number) => {
 const getPlayer3PtStat = (playerId: number) => {
   return playesrStat.filter(
     (a) =>
-      a.player.id === playerId
+      a.playerId === playerId
   )
     .reduce((accumulator, object) => {
       return accumulator + object.treePoint;
@@ -48,7 +48,7 @@ const getPlayer3PtStat = (playerId: number) => {
 const getPlayerAssistStat = (playerId: number) => {
   return playesrStat.filter(
     (a) =>
-      a.player.id === playerId
+      a.playerId === playerId
   )
     .reduce((accumulator, object) => {
       return accumulator + object.assit;

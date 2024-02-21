@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { currentGame, activitys, removeActivity } = useGamesStore()
+const { currentGame, activitys, removeActivity, getPlayerImg, getPlayerName } = useGamesStore()
 
 const currentScore = computed(() => {
   return {
@@ -33,6 +33,8 @@ const currentGameActivitys = () => {
         a.gameId === currentGame.gameId
     )
 }
+
+
 </script>
 
 <template>
@@ -49,11 +51,11 @@ const currentGameActivitys = () => {
           <div class="timeline-start timeline-box flex px-2">
             <div class="avatar">
               <div class="w-8 h-8 mask mask-hexagon bg-neutral">
-                <img v-if="item.player.img" :src="item.player.img" />
+                <img v-if="getPlayerImg(item.playerId)" :src="getPlayerImg(item.playerId)" />
               </div>
             </div>
             <div class="ml-2">
-              <span class="font-bold">{{ item.player.name }}</span>
+              <span class="font-bold">{{ getPlayerName(item.playerId) }}</span>
               <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
               }}Pt</span>
               <span v-else>&nbsp;ִ➡️&nbsp;Assist</span>
@@ -81,7 +83,7 @@ const currentGameActivitys = () => {
           </div>
           <div class="timeline-end timeline-box flex px-2">
             <div class="">
-              <span class="font-bold">{{ item.player.name }}</span>
+              <span class="font-bold">{{ getPlayerName(item.playerId) }}</span>
               <span v-if="item.action === 'score'">&nbsp;🏀&nbsp;{{ item.score
               }}Pt</span>
               <span v-else>&nbsp;ִ➡️&nbsp;Assist</span>
@@ -90,7 +92,7 @@ const currentGameActivitys = () => {
             </div>
             <div class="avatar ml-2">
               <div class="w-8 h-8 mask mask-hexagon bg-neutral">
-                <img v-if="item.player.img" :src="item.player.img" />
+                <img v-if="getPlayerImg(item.playerId)" :src="getPlayerImg(item.playerId)" />
               </div>
             </div>
           </div>

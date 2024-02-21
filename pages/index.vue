@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { currentGame, endGame, activitys, addActivity, currentTeamA, currentTeamB, removePlayerFromTeam, removeAllPlayerFromTeam } = useGamesStore()
+const { currentGame, endGame, activitys, addActivity, currentTeamA, currentTeamB, removePlayerFromTeam, removeAllPlayerFromTeam, getPlayerImg, getPlayerName } = useGamesStore()
 
 const currentActivitys = computed(() => {
   return activitys
@@ -38,7 +38,7 @@ const currentPlayerScore = (playerId: number) => {
     .filter(
       (a) =>
         a.gameId === currentGame.gameId &&
-        a.player.id === playerId &&
+        a.playerId === playerId &&
         a.action === 'score'
     )
     .reduce((accumulator, object) => {
@@ -51,7 +51,7 @@ const currentPlayerAsset = (playerId: number) => {
     .filter(
       (a) =>
         a.gameId === currentGame.gameId &&
-        a.player.id === playerId &&
+        a.playerId === playerId &&
         a.action === 'assit'
     ).length
 }
@@ -86,27 +86,27 @@ const assist = useSound(assistSfx, { volume: 0.2 })
           currentScore.teamA
         }}</div>
         <ul>
-          <li class="mt-8" v-for="item in currentTeamA" :key="item.id">
+          <li class="mt-8" v-for="playerId in currentTeamA" :key="playerId">
             <!--  -->
             <div class="flex">
               <div class="avatar">
                 <div class="w-10 h-10 mask mask-hexagon  bg-neutral">
-                  <img v-if="item.img" :src="item.img" />
+                  <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                 </div>
               </div>
               <div class="ml-1 grow">
-                <div class="font-bold">{{ item.name }}</div>
-                <div class="text-xs">🏀<span class="font-mono font-bold">:{{ currentPlayerScore(item.id)
+                <div class="font-bold">{{ getPlayerName(playerId) }}</div>
+                <div class="text-xs">🏀<span class="font-mono font-bold">:{{ currentPlayerScore(playerId)
                 }}&nbsp;</span>➡️<span class="font-mono font-bold">:{{
-  currentPlayerAsset(item.id)
+  currentPlayerAsset(playerId)
 }}</span></div>
               </div>
 
               <div class="dropdown relative top-0 right-0 ">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
-                  <li><a @click="substitute('A', item.id)">🙅🏻&nbsp;&nbsp;Substitute</a></li>
-                  <li><a @click="removePlayerFromTeam('A', item.id)">❌&nbsp;&nbsp;Remove</a></li>
+                  <li><a @click="substitute('A', playerId)">🙅🏻&nbsp;&nbsp;Substitute</a></li>
+                  <li><a @click="removePlayerFromTeam('A', playerId)">❌&nbsp;&nbsp;Remove</a></li>
                 </ul>
               </div>
             </div>
@@ -116,7 +116,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'A',
-                player: item,
+                playerId: playerId,
                 action: 'score',
                 score: 2
               })">2Pt</button>&nbsp;
@@ -125,7 +125,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'A',
-                player: item,
+                playerId: playerId,
                 action: 'score',
                 score: 3
               })">3Pt</button>&nbsp;
@@ -134,7 +134,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'A',
-                player: item,
+                playerId: playerId,
                 action: 'assit',
                 score: 0
               })">Assist</button>
@@ -157,26 +157,26 @@ const assist = useSound(assistSfx, { volume: 0.2 })
           currentScore.teamB
         }}</div>
         <ul>
-          <li class="mt-8" v-for="item in currentTeamB" :key="item.id">
+          <li class="mt-8" v-for="playerId in currentTeamB" :key="playerId">
             <!--  -->
             <div class="flex">
               <div class="avatar">
                 <div class="w-10 h-10 mask mask-hexagon  bg-neutral">
-                  <img v-if="item.img" :src="item.img" />
+                  <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                 </div>
               </div>
               <div class="ml-1 grow">
-                <div class="font-bold">{{ item.name }}</div>
-                <div class="text-xs">🏀<span class="font-mono font-bold">:{{ currentPlayerScore(item.id)
+                <div class="font-bold">{{ getPlayerName(playerId) }}</div>
+                <div class="text-xs">🏀<span class="font-mono font-bold">:{{ currentPlayerScore(playerId)
                 }}&nbsp;</span>➡️<span class="font-mono font-bold">:{{
-  currentPlayerAsset(item.id)
+  currentPlayerAsset(playerId)
 }}</span></div>
               </div>
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-xs m-1">:</div>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
-                  <li><a @click="substitute('B', item.id)">🙅🏻&nbsp;&nbsp;Substitute</a></li>
-                  <li><a @click="removePlayerFromTeam('B', item.id)">❌&nbsp;&nbsp;Remove</a></li>
+                  <li><a @click="substitute('B', playerId)">🙅🏻&nbsp;&nbsp;Substitute</a></li>
+                  <li><a @click="removePlayerFromTeam('B', playerId)">❌&nbsp;&nbsp;Remove</a></li>
                 </ul>
               </div>
             </div>
@@ -186,7 +186,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'B',
-                player: item,
+                playerId: playerId,
                 action: 'score',
                 score: 2
               })">2Pt</button>&nbsp;
@@ -195,7 +195,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'B',
-                player: item,
+                playerId: playerId,
                 action: 'score',
                 score: 3
               })">3Pt</button>&nbsp;
@@ -204,7 +204,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 id: Date.now(),
                 gameId: currentGame.gameId,
                 team: 'B',
-                player: item,
+                playerId: playerId,
                 action: 'assit',
                 score: 0
               })">Assist</button>

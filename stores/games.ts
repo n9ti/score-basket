@@ -11,14 +11,14 @@ export interface GameStat {
     teamB: number;
   };
   players: {
-    teamA: Player[];
-    teamB: Player[];
+    teamA: number[];
+    teamB: number[];
   };
 }
 
 export interface PlayerStat {
   gameId: number;
-  player: Player;
+  playerId: number;
   team: string;
   result: string;
   score: number;
@@ -37,7 +37,7 @@ export interface Activity {
   id: number;
   gameId: number;
   team: string;
-  player: Player;
+  playerId: number;
   action: string;
   score: number;
 }
@@ -47,8 +47,8 @@ export const useGamesStore = defineStore("games", {
     currentGame: { gameId: 0 } as Game,
     players: [] as Player[],
     activitys: [] as Activity[],
-    currentTeamA: [] as Player[],
-    currentTeamB: [] as Player[],
+    currentTeamA: [] as number[],
+    currentTeamB: [] as number[],
     gamesStat: [] as GameStat[],
     playesrStat: [] as PlayerStat[],
   }),
@@ -58,11 +58,19 @@ export const useGamesStore = defineStore("games", {
       () => {
         return state.players.filter((player) => {
           return (
-            state.currentTeamA.findIndex((key) => key.id === player.id) < 0 &&
-            state.currentTeamB.findIndex((key) => key.id === player.id) < 0
+            state.currentTeamA.findIndex((playerId) => playerId === player.id) <
+              0 &&
+            state.currentTeamB.findIndex((playerId) => playerId === player.id) <
+              0
           );
         });
       },
+    getPlayerImg: (state: { players: any[] }) => (playerId: number) => {
+      return state.players.find((player) => player.id === playerId).img;
+    },
+    getPlayerName: (state: { players: any[] }) => (playerId: number) => {
+      return state.players.find((player) => player.id === playerId).name;
+    },
   },
   actions: {
     //
@@ -102,17 +110,17 @@ export const useGamesStore = defineStore("games", {
         },
       });
       //
-      this.currentTeamA.forEach((player) => {
+      this.currentTeamA.forEach((playerId) => {
         this.playesrStat.push({
           gameId: this.currentGame.gameId,
-          player: player,
+          playerId: playerId,
           team: "A",
           result: teamAScore > teamBScore ? "WIN" : "LOSE",
           score: this.activitys
             .filter(
               (a) =>
                 a.gameId === this.currentGame.gameId &&
-                a.player.id === player.id &&
+                a.playerId === playerId &&
                 a.action === "score"
             )
             .reduce((accumulator, object) => {
@@ -121,37 +129,37 @@ export const useGamesStore = defineStore("games", {
           treePoint: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
-              a.player.id === player.id &&
+              a.playerId === playerId &&
               a.action === "score" &&
               a.score === 3
           ).length,
           twoPoint: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
-              a.player.id === player.id &&
+              a.playerId === playerId &&
               a.action === "score" &&
               a.score === 2
           ).length,
           assit: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
-              a.player.id === player.id &&
+              a.playerId === playerId &&
               a.action === "assit"
           ).length,
         });
       });
       //
-      this.currentTeamB.forEach((player) => {
+      this.currentTeamB.forEach((playerId) => {
         this.playesrStat.push({
           gameId: this.currentGame.gameId,
-          player: player,
+          playerId: playerId,
           team: "B",
           result: teamAScore < teamBScore ? "WIN" : "LOSE",
           score: this.activitys
             .filter(
               (a) =>
                 a.gameId === this.currentGame.gameId &&
-                a.player.id === player.id &&
+                a.playerId === playerId &&
                 a.action === "score"
             )
             .reduce((accumulator, object) => {
@@ -160,21 +168,21 @@ export const useGamesStore = defineStore("games", {
           treePoint: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
-              a.player.id === player.id &&
+              a.playerId === playerId &&
               a.action === "score" &&
               a.score === 3
           ).length,
           twoPoint: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
-              a.player.id === player.id &&
+              a.playerId === playerId &&
               a.action === "score" &&
               a.score === 2
           ).length,
           assit: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
-              a.player.id === player.id &&
+              a.playerId === playerId &&
               a.action === "assit"
           ).length,
         });
@@ -195,22 +203,26 @@ export const useGamesStore = defineStore("games", {
       this.players.push(player);
     },
     removePlayer(id: number) {
-      const index = this.players.findIndex((key) => key.id === id);
+      const index = this.players.findIndex((player) => player.id === id);
       this.players.splice(index, 1);
     },
     //
     // currentTeam //
     //
     addPlayerToTeam(team: string, player: Player) {
-      if (team === "A") this.currentTeamA.push(player);
-      else if (team === "B") this.currentTeamB.push(player);
+      if (team === "A") this.currentTeamA.push(player.id);
+      else if (team === "B") this.currentTeamB.push(player.id);
     },
     removePlayerFromTeam(team: string, id: number) {
       if (team === "A") {
-        const index = this.currentTeamA.findIndex((key) => key.id === id);
+        const index = this.currentTeamA.findIndex(
+          (playerId) => playerId === id
+        );
         this.currentTeamA.splice(index, 1);
       } else if (team === "B") {
-        const index = this.currentTeamB.findIndex((key) => key.id === id);
+        const index = this.currentTeamB.findIndex(
+          (playerId) => playerId === id
+        );
         this.currentTeamB.splice(index, 1);
       }
     },

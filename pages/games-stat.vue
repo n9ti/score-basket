@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { gamesStat } = useGamesStore()
+const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
 </script>
 
 <template>
@@ -23,9 +23,9 @@ const { gamesStat } = useGamesStore()
             </div>
             <div class="mt-1 w-full grid justify-items-end">
               <div class="avatar-group -space-x-1 rtl:space-x-reverse">
-                <div v-for="player in item.players.teamA" :key="player.id" class="avatar">
+                <div v-for="playerId in item.players.teamA" :key="playerId" class="avatar">
                   <div class="w-6 mask mask-hexagon bg-neutral">
-                    <img v-if="player.img" :src="player.img" />
+                    <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                   </div>
                 </div>
               </div>
@@ -45,9 +45,9 @@ const { gamesStat } = useGamesStore()
             </div>
             <div class="mt-1 w-full grid justify-items-start">
               <div class="avatar-group -space-x-1 rtl:space-x-reverse">
-                <div v-for="player in item.players.teamB" :key="player.id" class="avatar mask mask-hexagon">
+                <div v-for="playerId in item.players.teamB" :key="playerId" class="avatar mask mask-hexagon">
                   <div class="w-6 mask mask-hexagon bg-neutral">
-                    <img v-if="player.img" :src="player.img" />
+                    <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                   </div>
                 </div>
               </div>
