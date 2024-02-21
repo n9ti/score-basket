@@ -24,7 +24,7 @@ const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
             <div class="mt-1 w-full grid justify-items-end">
               <div class="avatar-group -space-x-1 rtl:space-x-reverse">
                 <div v-for="playerId in item.players.teamA" :key="playerId" class="avatar">
-                  <div class="w-6 mask mask-hexagon bg-neutral">
+                  <div class="w-8 mask mask-hexagon bg-neutral">
                     <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                   </div>
                 </div>
@@ -46,7 +46,7 @@ const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
             <div class="mt-1 w-full grid justify-items-start">
               <div class="avatar-group -space-x-1 rtl:space-x-reverse">
                 <div v-for="playerId in item.players.teamB" :key="playerId" class="avatar mask mask-hexagon">
-                  <div class="w-6 mask mask-hexagon bg-neutral">
+                  <div class="w-8 mask mask-hexagon bg-neutral">
                     <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                   </div>
                 </div>

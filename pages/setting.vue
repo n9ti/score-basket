@@ -38,7 +38,7 @@ const getStoreSize = (s: any) => {
       <!--  -->
       <div class="divider"></div>
       <!--  -->
-      <h1 class="mt-4 text-2xl">Store Size</h1>
+      <h1 class="mt-4 text-2xl">Storage Size</h1>
       <div class="overflow-x-auto">
         <table class="table">
           <tbody>
