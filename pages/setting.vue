@@ -43,30 +43,30 @@ const getStoreSize = (s: any) => {
         <table class="table">
           <tbody>
             <tr>
-              <th>Players</th>
+              <th>Players ({{ players.length }})</th>
               <td class="text-right">{{ getStoreSize(players) }}</td>
             </tr>
             <tr>
-              <th>activitys</th>
+              <th>activitys ({{ activitys.length }})</th>
               <td class="text-right">{{ getStoreSize(activitys) }}</td>
             </tr>
             <tr>
-              <th>currentTeamA</th>
+              <th>currentTeamA ({{ currentTeamA.length }})</th>
               <td class="text-right"> {{ getStoreSize(currentTeamA) }}
               </td>
             </tr>
             <tr>
-              <th>currentTeamB</th>
+              <th>currentTeamB ({{ currentTeamB.length }})</th>
               <td class="text-right"> {{ getStoreSize(currentTeamB) }}
               </td>
             </tr>
             <tr>
-              <th>gamesStat</th>
+              <th>gamesStat ({{ gamesStat.length }})</th>
               <td class="text-right"> {{ getStoreSize(gamesStat) }}
               </td>
             </tr>
             <tr>
-              <th>playesrStat</th>
+              <th>playesrStat ({{ playesrStat.length }})</th>
               <td class="text-right"> {{ getStoreSize(playesrStat) }}
               </td>
             </tr>
