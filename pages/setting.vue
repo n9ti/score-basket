@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { resetAllGames, players, activitys, currentTeamA, currentTeamB, gamesStat, playesrStat } = useGamesStore()
+const { resetAllGames, players, activitys, currentTeamA, currentTeamB, gamesStat, playesrStat, addSaturdayHooper, removeAllPlayers } = useGamesStore()
 const colorMode = useColorMode()
 const lightTheme = ref(colorMode.preference === 'retro')
 watch(lightTheme, (newValue) => {
@@ -78,9 +78,21 @@ const getStoreSize = (s: any) => {
       <!--  -->
       <div class="divider"></div>
       <!--  -->
-      <h1 class="mt-4 text-2xl">Reset</h1>
-      <button class="mt-4 btn rounded-full btn-sm btn-accent" @click="resetAllGames()">Reset All Games</button>
+      <h1 class="mt-4 text-2xl">Players</h1>
+      <button class="mt-4 btn rounded-full btn-sm btn-accent" @click="addSaturdayHooper()">Load Saturday Hooper</button>
       <!--  -->
+
+
+      <!--  -->
+      <div class="divider"></div>
+      <!--  -->
+      <h1 class="mt-4 text-2xl">Reset</h1>
+      <button class="mt-4 btn rounded-full btn-sm btn-error" @click="resetAllGames()">Reset All Games</button>
+      <br>
+      <button class="mt-4 btn rounded-full btn-sm btn-error" @click="removeAllPlayers()">Remove All Players</button>
+      <!--  -->
+
+
     </div>
   </div>
 </template>

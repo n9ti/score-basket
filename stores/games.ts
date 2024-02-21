@@ -194,6 +194,10 @@ export const useGamesStore = defineStore("games", {
       this.gamesStat.splice(0, this.gamesStat.length);
       this.playesrStat.splice(0, this.playesrStat.length);
       this.activitys.splice(0, this.activitys.length);
+
+      this.currentTeamA.splice(0, this.currentTeamA.length);
+      this.currentTeamB.splice(0, this.currentTeamB.length);
+
       this.currentGame.gameId = 0;
     },
     //
@@ -240,6 +244,96 @@ export const useGamesStore = defineStore("games", {
     removeActivity(id: number) {
       const index = this.activitys.findIndex((key) => key.id === id);
       this.activitys.splice(index, 1);
+    },
+    removeAllPlayers() {
+      this.players.splice(0, this.players.length);
+    },
+    addSaturdayHooper() {
+      let saturdayHooper = [
+        {
+          id: 900001,
+          name: "bank",
+          img: "/players/bank.png",
+        },
+        {
+          id: 900002,
+          name: "benz",
+          img: "/players/benz.png",
+        },
+        {
+          id: 900003,
+          name: "capsule",
+          img: "/players/capsule.png",
+        },
+        {
+          id: 900004,
+          name: "jan",
+          img: "/players/jan.png",
+        },
+        {
+          id: 900005,
+          name: "jeed",
+          img: "/players/jeed.png",
+        },
+        {
+          id: 900006,
+          name: "man",
+          img: "/players/man.png",
+        },
+        {
+          id: 900007,
+          name: "max",
+          img: "/players/max.png",
+        },
+        {
+          id: 900008,
+          name: "nae",
+          img: "/players/nae.png",
+        },
+
+        {
+          id: 900009,
+          name: "neng",
+          img: "/players/neng.png",
+        },
+        {
+          id: 900010,
+          name: "note",
+          img: "/players/note.png",
+        },
+        {
+          id: 900011,
+          name: "nui",
+          img: "/players/nui.png",
+        },
+        {
+          id: 900012,
+          name: "pla",
+          img: "/players/pla.png",
+        },
+
+        {
+          id: 900013,
+          name: "pop",
+          img: "/players/pop.png",
+        },
+        {
+          id: 900014,
+          name: "tong",
+          img: "/players/tong.png",
+        },
+        {
+          id: 900015,
+          name: "v",
+          img: "/players/v.png",
+        },
+        {
+          id: 900016,
+          name: "will",
+          img: "/players/will.png",
+        },
+      ];
+      this.players.push(...saturdayHooper);
     },
   },
   persist: true,
