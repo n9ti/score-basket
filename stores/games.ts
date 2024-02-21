@@ -252,89 +252,89 @@ export const useGamesStore = defineStore("games", {
       let saturdayHooper = [
         {
           id: 900001,
-          name: "bank",
+          name: "Bank",
           img: "/players/bank.png",
         },
         {
           id: 900002,
-          name: "benz",
+          name: "Benz",
           img: "/players/benz.png",
         },
         {
           id: 900003,
-          name: "capsule",
+          name: "Capsule",
           img: "/players/capsule.png",
         },
         {
           id: 900004,
-          name: "jan",
+          name: "Jan",
           img: "/players/jan.png",
         },
         {
           id: 900005,
-          name: "jeed",
+          name: "Jeed",
           img: "/players/jeed.png",
         },
         {
           id: 900006,
-          name: "man",
+          name: "Man",
           img: "/players/man.png",
         },
         {
           id: 900007,
-          name: "max",
+          name: "Max",
           img: "/players/max.png",
         },
         {
           id: 900008,
-          name: "nae",
+          name: "Nae",
           img: "/players/nae.png",
         },
 
         {
           id: 900009,
-          name: "neng",
+          name: "Neng",
           img: "/players/neng.png",
         },
         {
           id: 900010,
-          name: "note",
+          name: "Note",
           img: "/players/note.png",
         },
         {
           id: 900011,
-          name: "nui",
+          name: "Nui",
           img: "/players/nui.png",
         },
         {
           id: 900012,
-          name: "pla",
+          name: "Pla",
           img: "/players/pla.png",
         },
 
         {
           id: 900013,
-          name: "pop",
+          name: "Pop",
           img: "/players/pop.png",
         },
         {
           id: 900014,
-          name: "tong",
+          name: "Tong",
           img: "/players/tong.png",
         },
         {
           id: 900015,
-          name: "v",
+          name: "V",
           img: "/players/v.png",
         },
         {
           id: 900016,
-          name: "will",
+          name: "Will",
           img: "/players/will.png",
         },
         {
           id: 900017,
-          name: "it",
+          name: "It",
           img: "/players/it.png",
         },
       ];
