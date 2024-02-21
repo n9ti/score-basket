@@ -1,12 +1,23 @@
 <script setup lang="ts">
-const { addPlayerToTeam, getAvailablePlayers } = useGamesStore()
+const { currentTeamA, currentTeamB, addPlayerToTeam, getAvailablePlayers } = useGamesStore()
 
 const router = useRouter()
 const route = useRoute()
 
 const addPlayer = (item: Player) => {
   addPlayerToTeam(route.params.team[0], item);
-  router.back();
+  if (route.params.team[0] === 'A' && currentTeamA.length >= 4) {
+    router.back();
+  } else if (route.params.team[0] === 'B' && currentTeamB.length >= 4) {
+    router.back();
+  }
+}
+const getTeamLength = (team: any) => {
+  if (team === 'A') {
+    return currentTeamA.length;
+  } else {
+    return currentTeamB.length;
+  }
 }
 const cancel = () => {
   router.back();
@@ -15,7 +26,7 @@ const cancel = () => {
 
 <template>
   <div>
-    <h1 class="text-3xl">Add Player to team-{{ $route.params.team }}</h1>
+    <h1 class="text-3xl">Add Player to team-{{ $route.params.team }} ({{ getTeamLength($route.params.team) }})</h1>
 
     <ul>
       <li class="mt-4 flex content-center" v-for="item in getAvailablePlayers().sort(function (a, b) {
@@ -39,6 +50,7 @@ const cancel = () => {
     </ul>
 
     <NuxtLink class="mt-8 w-full btn btn-secondary mt-4" to="/players/create">+ New Player</NuxtLink>
-    <button class="btn w-full btn-ghost" @click="cancel">Cancel</button>
+    <br><br>
+    <button class="btn w-full btn-ghost" @click="cancel">Done</button>
   </div>
 </template>
