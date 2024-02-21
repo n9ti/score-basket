@@ -1,19 +1,51 @@
 <script setup lang="ts">
-const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
+const { gamesStat, playesrStat, getPlayerImg, getPlayerName } = useGamesStore()
+
+const getGamePlayerScoreStat = (gameId: number, playerId: number) => {
+  return playesrStat.filter(
+    (a) =>
+      a.playerId === playerId &&
+      a.gameId === gameId
+  )
+    .reduce((accumulator, object) => {
+      return accumulator + object.score;
+    }, 0)
+}
+
+const getGamePlayer3PtStat = (gameId: number, playerId: number) => {
+  return playesrStat.filter(
+    (a) =>
+      a.playerId === playerId &&
+      a.gameId === gameId
+  )
+    .reduce((accumulator, object) => {
+      return accumulator + object.treePoint;
+    }, 0)
+}
+
+const getGamePlayerAssistStat = (gameId: number, playerId: number) => {
+  return playesrStat.filter(
+    (a) =>
+      a.playerId === playerId &&
+      a.gameId === gameId
+  )
+    .reduce((accumulator, object) => {
+      return accumulator + object.assist;
+    }, 0)
+}
 </script>
 
 <template>
   <div>
     <ul>
       <li class="" v-for="item in gamesStat" :key="item.gameId">
-        <h1 class="w-full text-center text-sm font-medium">Game {{ item.gameId + 1 }}</h1>
+        <h1 class="mt-4 w-full text-center text-sm font-medium">Game {{ item.gameId + 1 }}</h1>
         <!-- <div class="mt-2 w-full flex justify-center">
           <NuxtLink class="btn rounded-full btn-xs" to="/game-history">Game History</NuxtLink>
         </div> -->
         <!--  -->
         <div class="mt-1 flex w-full">
           <div class="grid flex-grow content-start w-1/2">
-            <!-- <h1 class="text-xs font-bold text-right">Team A</h1> -->
             <div class="w-full grid justify-items-end">
               <div class="py-1 px-3 w-16 bg-base-300 rounded-box align-middle text-center text-2xl font-mono"
                 :class="{ 'text-success': item.score.teamA > item.score.teamB, 'text-error': item.score.teamA < item.score.teamB }">
@@ -22,8 +54,12 @@ const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
                 }}</div>
             </div>
             <div class="mt-1 w-full grid justify-items-end">
-              <div class="avatar-group -space-x-1 rtl:space-x-reverse">
-                <div v-for="playerId in item.players.teamA" :key="playerId" class="avatar">
+              <div v-for="playerId in item.players.teamA" :key="playerId"
+                class="mt-1 w-10/12 flex justify-between items-center">
+                <div class="font-medium">🏀 : {{ getGamePlayerScoreStat(item.gameId, playerId) }}</div>
+                <div class="font-medium">③ : {{ getGamePlayer3PtStat(item.gameId, playerId) }}</div>
+                <div class="font-medium">➡️ : {{ getGamePlayerAssistStat(item.gameId, playerId) }}</div>
+                <div class="avatar">
                   <div class="w-8 mask mask-hexagon bg-neutral">
                     <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                   </div>
@@ -35,7 +71,6 @@ const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
           <div class="divider divider-horizontal"></div>
           <!--  -->
           <div class="grid flex-grow content-start w-1/2">
-            <!-- <h1 class="text-xs font-bold">Team B</h1> -->
             <div class="w-full grid justify-items-start">
               <div class="py-1 px-3 w-16 bg-base-300 rounded-box align-middle text-center text-2xl font-mono"
                 :class="{ 'text-success': item.score.teamA < item.score.teamB, 'text-error': item.score.teamA > item.score.teamB }">
@@ -44,12 +79,17 @@ const { gamesStat, getPlayerImg, getPlayerName } = useGamesStore()
                 }}</div>
             </div>
             <div class="mt-1 w-full grid justify-items-start">
-              <div class="avatar-group -space-x-1 rtl:space-x-reverse">
-                <div v-for="playerId in item.players.teamB" :key="playerId" class="avatar mask mask-hexagon">
+              <div v-for="playerId in item.players.teamB" :key="playerId"
+                class="mt-1 w-10/12 flex justify-between items-center">
+                <div class="avatar">
                   <div class="w-8 mask mask-hexagon bg-neutral">
                     <img v-if="getPlayerImg(playerId)" :src="getPlayerImg(playerId)" />
                   </div>
                 </div>
+                <div class="font-medium">🏀 : {{ getGamePlayerScoreStat(item.gameId, playerId) }}</div>
+                <div class="font-medium">③ : {{ getGamePlayer3PtStat(item.gameId, playerId) }}</div>
+                <div class="font-medium">➡️ : {{ getGamePlayerAssistStat(item.gameId, playerId) }}</div>
+
               </div>
             </div>
           </div>
