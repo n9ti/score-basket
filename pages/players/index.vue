@@ -19,5 +19,7 @@ const { players } = useGamesStore()
       </template>
     </ul>
     <NuxtLink class="mt-8 w-full btn btn-secondary mt-4" to="/players/create">+ New Player</NuxtLink>
+    <br><br>
+    <textarea class="p-2 w-full" name="" id="" cols="30" rows="10">{{ players }}</textarea>
   </div>
 </template>
