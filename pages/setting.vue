@@ -11,7 +11,7 @@ watch(lightTheme, (newValue) => {
 })
 
 const getStoreSize = (s: any) => {
-  return JSON.stringify(s).length
+  return new Intl.NumberFormat().format(JSON.stringify(s).length)
 }
 </script>
 
@@ -39,12 +39,42 @@ const getStoreSize = (s: any) => {
       <div class="divider"></div>
       <!--  -->
       <h1 class="mt-4 text-2xl">Store Size</h1>
-      Players: {{ getStoreSize(players) }} <br>
-      activitys: {{ getStoreSize(activitys) }} <br>
-      currentTeamA: {{ getStoreSize(currentTeamA) }} <br>
-      currentTeamB: {{ getStoreSize(currentTeamB) }} <br>
-      gamesStat: {{ getStoreSize(gamesStat) }} <br>
-      playesrStat: {{ getStoreSize(playesrStat) }}
+      <div class="overflow-x-auto">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Players</th>
+              <td class="text-right">{{ getStoreSize(players) }}</td>
+            </tr>
+            <tr>
+              <th>activitys</th>
+              <td class="text-right">{{ getStoreSize(activitys) }}</td>
+            </tr>
+            <tr>
+              <th>currentTeamA</th>
+              <td class="text-right"> {{ getStoreSize(currentTeamA) }}
+              </td>
+            </tr>
+            <tr>
+              <th>currentTeamB</th>
+              <td class="text-right"> {{ getStoreSize(currentTeamB) }}
+              </td>
+            </tr>
+            <tr>
+              <th>gamesStat</th>
+              <td class="text-right"> {{ getStoreSize(gamesStat) }}
+              </td>
+            </tr>
+            <tr>
+              <th>playesrStat</th>
+              <td class="text-right"> {{ getStoreSize(playesrStat) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
       <!--  -->
       <div class="divider"></div>
       <!--  -->
