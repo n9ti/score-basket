@@ -52,7 +52,7 @@ const currentPlayerAsset = (playerId: number) => {
       (a) =>
         a.gameId === currentGame.gameId &&
         a.playerId === playerId &&
-        a.action === 'assit'
+        a.action === 'assist'
     ).length
 }
 
@@ -135,7 +135,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 gameId: currentGame.gameId,
                 team: 'A',
                 playerId: playerId,
-                action: 'assit',
+                action: 'assist',
                 score: 0
               })">Assist</button>
             </div>
@@ -205,7 +205,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
                 gameId: currentGame.gameId,
                 team: 'B',
                 playerId: playerId,
-                action: 'assit',
+                action: 'assist',
                 score: 0
               })">Assist</button>
             </div>

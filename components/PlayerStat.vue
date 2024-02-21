@@ -51,7 +51,7 @@ const getPlayerAssistStat = (playerId: number) => {
       a.playerId === playerId
   )
     .reduce((accumulator, object) => {
-      return accumulator + object.assit;
+      return accumulator + object.assist;
     }, 0)
 }
 </script>

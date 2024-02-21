@@ -24,7 +24,7 @@ export interface PlayerStat {
   score: number;
   treePoint: number;
   twoPoint: number;
-  assit: number;
+  assist: number;
 }
 
 export interface Player {
@@ -140,11 +140,11 @@ export const useGamesStore = defineStore("games", {
               a.action === "score" &&
               a.score === 2
           ).length,
-          assit: this.activitys.filter(
+          assist: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
               a.playerId === playerId &&
-              a.action === "assit"
+              a.action === "assist"
           ).length,
         });
       });
@@ -179,11 +179,11 @@ export const useGamesStore = defineStore("games", {
               a.action === "score" &&
               a.score === 2
           ).length,
-          assit: this.activitys.filter(
+          assist: this.activitys.filter(
             (a) =>
               a.gameId === this.currentGame.gameId &&
               a.playerId === playerId &&
-              a.action === "assit"
+              a.action === "assist"
           ).length,
         });
       });
