@@ -87,11 +87,6 @@ const getStoreSize = (s: any) => {
       <div class="divider"></div>
       <!--  -->
       <h1 class="mt-4 text-2xl">Reset</h1>
-      <!-- <button class="mt-4 btn rounded-full btn-sm btn-error" @click="resetAllGames()">Reset All Games</button>
-      <br>
-      <button class="mt-4 btn rounded-full btn-sm btn-error" @click="removeAllPlayers()">Remove All Players</button> -->
-      <!--  -->
-
       <div class="dropdown dropdown-right">
         <div tabindex="0" role="button" class="mt-4 btn rounded-full btn-sm btn-error">Reset All Stat</div>
         <ul tabindex="0" class="ml-4 dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
