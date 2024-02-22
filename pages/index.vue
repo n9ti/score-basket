@@ -219,6 +219,7 @@ const assist = useSound(assistSfx, { volume: 0.2 })
       </div>
     </div>
     <!--  -->
-    <button v-if="currentActivitys.length > 0" class="mt-64 btn w-full btn-accent" @click="endGame()">End Game</button>
+    <div class="mt-64" v-if="currentScore.teamA < 11 && currentScore.teamB < 11"></div>
+    <button v-if="currentActivitys.length > 0" class="mt-12 btn w-full btn-accent" @click="endGame()">End Game</button>
   </div>
 </template>
