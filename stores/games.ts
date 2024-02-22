@@ -338,7 +338,15 @@ export const useGamesStore = defineStore("games", {
           img: "/players/it.png",
         },
       ];
-      this.players.push(...saturdayHooper);
+      saturdayHooper.forEach((player) => {
+        if (
+          this.players.findIndex((p) => {
+            return p.id === player.id;
+          }) < 0
+        ) {
+          this.players.push(player);
+        }
+      });
     },
   },
   persist: true,
